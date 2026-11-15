@@ -78,3 +78,4 @@ const prizeClaimSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model('PrizeClaim', prizeClaimSchema);
+

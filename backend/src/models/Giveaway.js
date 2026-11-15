@@ -111,3 +111,4 @@ const giveawaySchema = new mongoose.Schema(
 giveawaySchema.index({ status: 1, endDate: 1 });
 
 module.exports = mongoose.model('Giveaway', giveawaySchema);
+

@@ -109,3 +109,4 @@ export const VeloopLoader = ({ message = 'Loading VELOOP Rewards...' }) => {
 };
 
 export default VeloopLoader;
+

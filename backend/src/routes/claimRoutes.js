@@ -8,3 +8,4 @@ router.post('/:id', authenticate, claimController.claimPrize);
 router.get('/:id', authenticate, claimController.getMyClaim);
 
 module.exports = router;
+

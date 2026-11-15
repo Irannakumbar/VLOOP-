@@ -86,3 +86,4 @@ export const StatBadge = ({ icon: Icon, value, label, sublabel, accent = 'gold' 
 };
 
 export default StatBadge;
+

@@ -68,3 +68,4 @@ const giveawayEntryTransactionSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model('GiveawayEntryTransaction', giveawayEntryTransactionSchema);
+

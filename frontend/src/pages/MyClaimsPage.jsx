@@ -221,3 +221,4 @@ export const MyClaimsPage = () => {
 };
 
 export default MyClaimsPage;
+

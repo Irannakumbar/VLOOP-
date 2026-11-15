@@ -214,6 +214,20 @@ export const Navbar = () => {
           >
             Rules & Terms
           </Link>
+
+          {user?.role === 'admin' && (
+            <Link
+              to="/admin"
+              className="badge-veloop-emerald"
+              style={{
+                textDecoration: 'none',
+                padding: '6px 14px',
+                fontSize: '0.82rem',
+              }}
+            >
+              <Shield size={14} /> Admin Portal
+            </Link>
+          )}
         </div>
 
         {/* Right Action Controls: Wallet & Auth */}
@@ -605,3 +619,4 @@ export const Navbar = () => {
 };
 
 export default Navbar;
+

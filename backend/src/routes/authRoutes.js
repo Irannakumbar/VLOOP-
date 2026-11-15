@@ -11,3 +11,4 @@ router.put('/shipping-address', authenticate, authController.updateShippingAddre
 router.post('/faucet', authenticate, authController.earnDailyTokens);
 
 module.exports = router;
+

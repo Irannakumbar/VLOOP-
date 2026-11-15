@@ -356,3 +356,4 @@ exports.listParticipations = async (req, res, next) => {
     next(error);
   }
 };
+

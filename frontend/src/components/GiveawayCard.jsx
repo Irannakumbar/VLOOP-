@@ -223,3 +223,4 @@ export const GiveawayCard = ({ giveaway }) => {
 };
 
 export default GiveawayCard;
+

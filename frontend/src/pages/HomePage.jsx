@@ -14,12 +14,14 @@ import {
   ChevronDown,
   Clock,
   Ticket,
+  Trophy,
 } from 'lucide-react';
 import { giveawayAPI } from '../services/api';
 import GiveawayCard from '../components/GiveawayCard';
 import StatBadge from '../components/StatBadge';
 import VeloopLoader from '../components/VeloopLoader';
 import CountdownTimer from '../components/CountdownTimer';
+import WinnerSlider from '../components/WinnerSlider';
 import { useAuth } from '../context/AuthContext';
 
 export const HomePage = () => {
@@ -89,7 +91,6 @@ export const HomePage = () => {
     return <VeloopLoader message="Connecting to VELOOP Authoritative Rewards Platform..." />;
   }
 
-  // Find grand prize for hero countdown (iPhone 15 Pro or first active)
   const heroGiveaway = giveaways.find((g) => g.slug === 'iphone-15-pro') || giveaways[0];
 
   return (
@@ -101,12 +102,11 @@ export const HomePage = () => {
       <section
         style={{
           position: 'relative',
-          padding: '60px 0 80px 0',
+          padding: '60px 0 60px 0',
           overflow: 'hidden',
           background: 'linear-gradient(180deg, #211326 0%, #2b172e 50%, #211326 100%)',
         }}
       >
-        {/* Background ambient radial gradients */}
         <div
           style={{
             position: 'absolute',
@@ -194,7 +194,7 @@ export const HomePage = () => {
               boxShadow: '0 25px 60px -10px rgba(15, 7, 18, 0.8), 0 0 30px rgba(255, 107, 74, 0.15)',
               position: 'relative',
               overflow: 'hidden',
-              marginBottom: '48px',
+              marginBottom: '44px',
             }}
           >
             <div className="row align-items-center g-4">
@@ -345,7 +345,7 @@ export const HomePage = () => {
           </div>
 
           {/* =========================================================================
-              C. GIVEAWAY STATISTICS — Genuine API Connected Data
+              GIVEAWAY STATISTICS — Genuine API Connected Data
               ========================================================================= */}
           <div className="row g-3">
             <div className="col-xl-3 col-md-6">
@@ -353,25 +353,25 @@ export const HomePage = () => {
                 icon={Users}
                 value={(statistics?.totalParticipants || 12480).toLocaleString()}
                 label="Total Participants"
-                sublabel="Active platform entries"
+                sublabel="8.5K+ Active Users"
                 accent="gold"
               />
             </div>
             <div className="col-xl-3 col-md-6">
               <StatBadge
                 icon={Gift}
-                value={statistics?.activeGiveaways || giveaways.length || 6}
-                label="Active Giveaways"
-                sublabel="Current open draws"
+                value={`${statistics?.activeGiveaways || 6} Active`}
+                label="Total Giveaways"
+                sublabel="24 Historical Total"
                 accent="coral"
               />
             </div>
             <div className="col-xl-3 col-md-6">
               <StatBadge
                 icon={Award}
-                value={statistics?.winnersAnnounced || 3}
-                label="Winners Announced"
-                sublabel="Provably fair draws"
+                value="1.2K+ Rewards"
+                label="Prizes Won"
+                sublabel={`${statistics?.winnersAnnounced || 3} Recent Winners`}
                 accent="emerald"
               />
             </div>
@@ -405,7 +405,7 @@ export const HomePage = () => {
                 </div>
                 <div>
                   <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
-                    Grand Draw Ends In
+                    Giveaway Ends In
                   </div>
                   <div style={{ margin: '4px 0' }}>
                     {heroGiveaway ? (
@@ -425,9 +425,12 @@ export const HomePage = () => {
       </section>
 
       {/* =========================================================================
-          D. FEATURED GIVEAWAY CARDS — All 6 Required Giveaways
-          iPhone 15 Pro (250 VEs), Apple Watch (200 VEs), AirPods (500 SVEs),
-          Amazon ₹2,000 (500 VEs), Amazon ₹500 (300 VEs), ₹20 Voucher (2000 Tokens)
+          SECTION 18 & 19: HORIZONTAL WINNER ANNOUNCEMENT SLIDER / SOCIAL PROOF
+          ========================================================================= */}
+      <WinnerSlider />
+
+      {/* =========================================================================
+          FEATURED GIVEAWAY CARDS — All 6 Required Giveaways
           ========================================================================= */}
       <section
         id="giveaways-section"
@@ -459,7 +462,7 @@ export const HomePage = () => {
                   marginBottom: '8px',
                 }}
               >
-                ⭐ FEATURED REWARDS
+                ⭐ FEATURED GIVEAWAYS
               </div>
               <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.6rem)', fontWeight: 800 }}>
                 Featured Giveaways
@@ -469,12 +472,11 @@ export const HomePage = () => {
               </p>
             </div>
 
-            <span
-              className="badge-veloop-gold"
-              style={{ fontSize: '0.82rem', padding: '8px 16px' }}
-            >
-              {giveaways.length} Active Draws Available
-            </span>
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <span className="badge-veloop-gold" style={{ fontSize: '0.82rem', padding: '8px 16px' }}>
+                {giveaways.length} Active Draws Available
+              </span>
+            </div>
           </div>
 
           {/* Cards Grid */}
@@ -489,7 +491,7 @@ export const HomePage = () => {
       </section>
 
       {/* =========================================================================
-          E. HOW TO PARTICIPATE — Visual 6-Step Timeline
+          HOW TO PARTICIPATE — Visual Timeline (Sections 14 & 15 from PDF)
           ========================================================================= */}
       <section
         id="how-it-works"
@@ -503,13 +505,13 @@ export const HomePage = () => {
         <div className="container">
           <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 48px auto' }}>
             <span className="badge-veloop-coral" style={{ marginBottom: '12px' }}>
-              STEP-BY-STEP GUIDE
+              STEP-BY-STEP FLOW
             </span>
             <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.6rem)', fontWeight: 800 }}>
               How to Participate?
             </h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginTop: '6px' }}>
-              Follow these simple steps to join giveaways and claim verified prizes.
+              Follow these simple steps to join giveaways, collect entries, and claim verified prizes.
             </p>
           </div>
 
@@ -517,37 +519,37 @@ export const HomePage = () => {
             {[
               {
                 step: '01',
-                title: 'Explore Giveaways',
-                desc: 'Browse current active giveaways and select the gadgets or shopping vouchers you desire.',
-                icon: Gift,
+                title: 'Sign Up / Login',
+                desc: 'Create your account or log in to get your initial welcome bonus wallet credits.',
+                icon: Users,
               },
               {
                 step: '02',
-                title: 'Review the Prize',
-                desc: 'Inspect detailed specifications, retail valuations, total participants, and draw countdowns.',
-                icon: Award,
+                title: 'Review The Prize',
+                desc: 'Inspect detailed specifications, retail valuations, countdowns, and eligible entry requirements.',
+                icon: Gift,
               },
               {
                 step: '03',
-                title: 'Check Eligibility & Fee',
+                title: 'Check Entries & Fee',
                 desc: 'Confirm your authoritative wallet balance has sufficient VEs, SVEs, or daily Tokens.',
                 icon: ShieldCheck,
               },
               {
                 step: '04',
-                title: 'Join the Giveaway',
-                desc: 'Confirm your entry. The entry fee is safely deducted, and your unique VIP ticket is generated.',
+                title: 'Join Giveaway',
+                desc: 'Confirm entry in the confirmation modal. The entry fee is safely deducted and your VIP ticket is logged.',
                 icon: Ticket,
               },
               {
                 step: '05',
-                title: 'Wait for Announcement',
+                title: 'Winner Selected',
                 desc: 'At zero countdown, our cryptographically provable SHA-256 algorithm selects winners fairly.',
                 icon: Clock,
               },
               {
                 step: '06',
-                title: 'Claim Your Prize',
+                title: 'Claim Your Reward',
                 desc: 'Winners submit postal address for courier dispatch or receive digital codes directly to email.',
                 icon: Sparkles,
               },
@@ -618,7 +620,7 @@ export const HomePage = () => {
       </section>
 
       {/* =========================================================================
-          F & G. CURRENT & PREVIOUS WINNERS TABS
+          WINNERS TAB & PREVIOUS WINNERS TAB (Sections 21 & 22 from PDF)
           ========================================================================= */}
       <section style={{ padding: '80px 0' }}>
         <div className="container">
@@ -637,7 +639,7 @@ export const HomePage = () => {
                 PROVABLY FAIR WINNERS
               </span>
               <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.6rem)', fontWeight: 800 }}>
-                Winner Announcements
+                Winners Section
               </h2>
             </div>
 
@@ -666,7 +668,7 @@ export const HomePage = () => {
                   transition: 'all 0.2s ease',
                 }}
               >
-                Current Winners
+                Current Giveaway
               </button>
               <button
                 type="button"
@@ -688,106 +690,143 @@ export const HomePage = () => {
             </div>
           </div>
 
-          {/* Winner Cards List */}
-          {previousWinners.length > 0 ? (
-            <div className="row g-3">
-              {previousWinners.slice(0, 4).map((winner) => (
-                <div key={winner._id} className="col-lg-3 col-md-6">
-                  <div
-                    style={{
-                      background: 'linear-gradient(145deg, rgba(50, 29, 53, 0.8) 0%, rgba(33, 19, 38, 0.9) 100%)',
-                      border: '1px solid rgba(246, 200, 95, 0.2)',
-                      borderRadius: 'var(--radius-lg)',
-                      padding: '20px',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      textAlign: 'center',
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: '80px',
-                        height: '80px',
-                        marginBottom: '14px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      <img
-                        src={winner.prize?.image || '/assets/hero-gift-box.png'}
-                        alt={winner.prize?.name || 'Winner Prize'}
-                        style={{
-                          maxHeight: '75px',
-                          maxWidth: '100%',
-                          objectFit: 'contain',
-                        }}
-                      />
-                    </div>
-
-                    <span className="badge-veloop-gold" style={{ fontSize: '0.72rem', marginBottom: '8px' }}>
-                      Rank #{winner.rank} Winner
-                    </span>
-
-                    <h5 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '4px' }}>
-                      {winner.prize?.name || 'Grand Prize'}
-                    </h5>
-
-                    <div
-                      style={{
-                        fontFamily: 'var(--font-display)',
-                        color: 'var(--accent-coral)',
-                        fontWeight: 700,
-                        fontSize: '0.9rem',
-                        marginBottom: '6px',
-                      }}
-                    >
-                      Masked ID: {winner.maskedUserId}
-                    </div>
-
-                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                      Announced: {new Date(winner.announcedAt).toLocaleDateString()}
-                    </div>
-
-                    <div style={{ marginTop: '12px' }}>
-                      <span
-                        className={
-                          winner.claimStatus === 'claim_completed'
-                            ? 'badge-veloop-emerald'
-                            : 'badge-veloop-coral'
-                        }
-                        style={{ fontSize: '0.72rem' }}
-                      >
-                        {winner.claimStatus === 'claim_completed'
-                          ? 'Prize Dispatched & Delivered'
-                          : 'Claim Processing'}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
+          {/* Section 21: When current giveaway is active, communicate that winners are not yet finalized */}
+          {activeWinnerTab === 'current' ? (
             <div
               style={{
-                textAlign: 'center',
-                padding: '40px 20px',
-                background: 'rgba(50, 29, 53, 0.5)',
+                background: 'linear-gradient(145deg, rgba(50, 29, 53, 0.8) 0%, rgba(33, 19, 38, 0.9) 100%)',
+                border: '1.5px solid rgba(246, 200, 95, 0.25)',
                 borderRadius: 'var(--radius-lg)',
+                padding: '36px',
+                textAlign: 'center',
               }}
             >
-              <Award size={36} color="var(--accent-gold)" style={{ marginBottom: '12px' }} />
-              <h5>Upcoming Winner Announcements</h5>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem' }}>
-                Active draws are ongoing. Winners will be announced directly as countdowns conclude.
+              <div
+                style={{
+                  display: 'inline-flex',
+                  padding: '14px',
+                  borderRadius: '50%',
+                  background: 'rgba(255, 107, 74, 0.15)',
+                  border: '1px solid rgba(255, 107, 74, 0.35)',
+                  marginBottom: '16px',
+                }}
+              >
+                <Clock size={32} color="#FF6B4A" />
+              </div>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '6px' }}>
+                Current Giveaway is Still Live
+              </h3>
+              <div style={{ display: 'inline-block', marginBottom: '14px' }}>
+                <span className="badge-veloop-emerald" style={{ fontSize: '0.82rem' }}>
+                  Status: LIVE
+                </span>
+              </div>
+              <p style={{ color: 'var(--text-secondary)', maxWidth: '580px', margin: '0 auto 20px auto', fontSize: '0.94rem' }}>
+                Winner selection for current active draws is automated and provably fair. Winners will be calculated and announced as soon as the respective draw countdowns hit zero.
               </p>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '14px' }}>
+                <a href="#giveaways-section" className="btn-veloop-primary">
+                  <span>Join Live Draws Now</span>
+                  <ArrowRight size={16} />
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setActiveWinnerTab('previous')}
+                  className="btn-veloop-outline"
+                >
+                  View Completed Winners
+                </button>
+              </div>
+            </div>
+          ) : (
+            /* Section 22: Previous Winners Tab with Historical Concluded Events */
+            <div className="row g-3">
+              {previousWinners.length > 0 ? (
+                previousWinners.map((winner) => (
+                  <div key={winner._id} className="col-lg-3 col-md-6">
+                    <div
+                      style={{
+                        background: 'linear-gradient(145deg, rgba(50, 29, 53, 0.8) 0%, rgba(33, 19, 38, 0.9) 100%)',
+                        border: '1px solid rgba(246, 200, 95, 0.2)',
+                        borderRadius: 'var(--radius-lg)',
+                        padding: '20px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        textAlign: 'center',
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: '80px',
+                          height: '80px',
+                          marginBottom: '14px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        <img
+                          src={winner.prize?.image || '/assets/hero-gift-box.png'}
+                          alt={winner.prize?.name || 'Winner Prize'}
+                          style={{
+                            maxHeight: '75px',
+                            maxWidth: '100%',
+                            objectFit: 'contain',
+                          }}
+                        />
+                      </div>
+
+                      <span className="badge-veloop-gold" style={{ fontSize: '0.72rem', marginBottom: '8px' }}>
+                        Rank #{winner.rank} Winner
+                      </span>
+
+                      <h5 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '4px' }}>
+                        {winner.prize?.name || 'Grand Prize'}
+                      </h5>
+
+                      <div
+                        style={{
+                          fontFamily: 'var(--font-display)',
+                          color: 'var(--accent-coral)',
+                          fontWeight: 700,
+                          fontSize: '0.9rem',
+                          marginBottom: '6px',
+                        }}
+                      >
+                        Masked ID: {winner.maskedUserId}
+                      </div>
+
+                      <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+                        Announced: {new Date(winner.announcedAt).toLocaleDateString()}
+                      </div>
+
+                      <div style={{ marginTop: '12px' }}>
+                        <span
+                          className={
+                            winner.claimStatus === 'claim_completed'
+                              ? 'badge-veloop-emerald'
+                              : 'badge-veloop-coral'
+                          }
+                          style={{ fontSize: '0.72rem' }}
+                        >
+                          {winner.claimStatus === 'claim_completed'
+                            ? 'Prize Delivered ✓'
+                            : 'Claim In Progress'}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div style={{ textAlign: 'center', padding: '40px' }}>No previous winners recorded yet.</div>
+              )}
             </div>
           )}
 
           <div style={{ textAlign: 'center', marginTop: '28px' }}>
             <Link to="/winners" className="btn-veloop-secondary">
-              <span>View All Past Winners</span>
+              <span>Explore Full Hall of Winners</span>
               <ExternalLink size={16} />
             </Link>
           </div>
@@ -795,7 +834,7 @@ export const HomePage = () => {
       </section>
 
       {/* =========================================================================
-          H. TRUST & FAIRNESS SECTION (From Ref_02 bottom bar)
+          TRUST & FAIRNESS SECTION (From Ref_02 & Section 43 of PDF)
           ========================================================================= */}
       <section
         style={{
@@ -828,7 +867,7 @@ export const HomePage = () => {
                     100% Fair & Transparent
                   </h6>
                   <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', margin: 0 }}>
-                    All giveaways conducted fairly using SHA-256 entropy.
+                    Giveaway rules are clearly displayed and verified with SHA-256.
                   </p>
                 </div>
               </div>
@@ -853,10 +892,10 @@ export const HomePage = () => {
                 </div>
                 <div>
                   <h6 style={{ fontWeight: 700, fontSize: '0.95rem', marginBottom: '2px' }}>
-                    Authoritative Balance
+                    Reward Transparency
                   </h6>
                   <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', margin: 0 }}>
-                    Transactions logged atomically in MongoDB ledger.
+                    Prize details, values, and claim guidelines explicitly published.
                   </p>
                 </div>
               </div>
@@ -884,7 +923,7 @@ export const HomePage = () => {
                     Trusted by 10K+ Users
                   </h6>
                   <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', margin: 0 }}>
-                    Join thousands of verified active members.
+                    Join thousands of active verified members.
                   </p>
                 </div>
               </div>
@@ -909,10 +948,10 @@ export const HomePage = () => {
                 </div>
                 <div>
                   <h6 style={{ fontWeight: 700, fontSize: '0.95rem', marginBottom: '2px' }}>
-                    24/7 Claim Assistance
+                    24/7 Customer Support
                   </h6>
                   <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', margin: 0 }}>
-                    Dedicated support for prize courier delivery.
+                    Dedicated claim verification and delivery assistance.
                   </p>
                 </div>
               </div>
@@ -922,7 +961,7 @@ export const HomePage = () => {
       </section>
 
       {/* =========================================================================
-          I. FAQ SECTION — Interactive Accordion
+          FAQ SECTION — Interactive Accordion
           ========================================================================= */}
       <section id="faq-section" style={{ padding: '80px 0' }}>
         <div className="container" style={{ maxWidth: '820px' }}>
@@ -931,7 +970,7 @@ export const HomePage = () => {
               FREQUENTLY ASKED QUESTIONS
             </span>
             <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.5rem)', fontWeight: 800 }}>
-              Everything You Need to Know
+              Frequently Asked Questions
             </h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginTop: '6px' }}>
               Clear rules, authoritative transactions, and guaranteed fulfillment.

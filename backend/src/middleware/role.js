@@ -22,3 +22,4 @@ module.exports = {
   adminOnly: requireRole('admin'),
   requireRole,
 };
+

@@ -57,3 +57,4 @@ const giveawayParticipationSchema = new mongoose.Schema(
 giveawayParticipationSchema.index({ userId: 1, giveawayId: 1 }, { unique: true });
 
 module.exports = mongoose.model('GiveawayParticipation', giveawayParticipationSchema);
+

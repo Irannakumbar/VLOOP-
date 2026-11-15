@@ -23,3 +23,4 @@ router.post('/:id/claim', authenticate, claimController.claimPrize);
 router.get('/:id/my-claim', authenticate, claimController.getMyClaim);
 
 module.exports = router;
+

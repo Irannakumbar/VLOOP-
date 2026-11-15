@@ -199,3 +199,4 @@ node backend/tests/test_suite.js
 - `GET /api/admin/claims` — Review and update prize dispatch fulfillment.
 - `GET /api/admin/fraud-events` — Real-time security alerts and risk event monitor.
 - `GET /api/admin/audit-logs` — Immutable administrative action logs.
+

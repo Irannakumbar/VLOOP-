@@ -97,6 +97,11 @@ export const Footer = () => {
                   Past Winners Roster
                 </Link>
               </li>
+              <li>
+                <Link to="/admin" style={{ color: '#55d4a4', textDecoration: 'none', fontWeight: 600 }}>
+                  Admin Control Suite
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -179,3 +184,4 @@ export const Footer = () => {
 };
 
 export default Footer;
+

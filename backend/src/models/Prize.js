@@ -50,3 +50,4 @@ const prizeSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model('Prize', prizeSchema);
+

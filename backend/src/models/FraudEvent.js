@@ -53,3 +53,4 @@ const fraudEventSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model('FraudEvent', fraudEventSchema);
+

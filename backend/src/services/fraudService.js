@@ -42,3 +42,4 @@ class FraudService {
 }
 
 module.exports = new FraudService();
+

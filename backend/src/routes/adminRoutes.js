@@ -21,3 +21,4 @@ router.get('/fraud-events', adminController.listFraudEvents);
 router.get('/audit-logs', adminController.listAuditLogs);
 
 module.exports = router;
+

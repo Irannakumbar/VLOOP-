@@ -150,3 +150,4 @@ class WalletService {
 }
 
 module.exports = new WalletService();
+
