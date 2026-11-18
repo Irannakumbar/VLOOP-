@@ -144,3 +144,4 @@ export const WinnerSlider = () => {
 };
 
 export default WinnerSlider;
+
